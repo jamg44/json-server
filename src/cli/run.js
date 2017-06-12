@@ -10,7 +10,7 @@ const load = require('./utils/load')
 const example = require('./example.json')
 const jsonServer = require('../server')
 
-let isHTTPS = false;
+let isHTTPS = false
 
 function prettyPrint (argv, object, rules) {
   const host = argv.host === '0.0.0.0' ? 'localhost' : argv.host
@@ -146,21 +146,20 @@ module.exports = function (argv) {
       app = createApp(source, data, routes, middlewares, argv)
 
       if (argv.httpscert || argv.httpskey) {
-        console.log(chalk.yellow('  Using HTTPS with:'));
-        console.log(chalk.yellow('  \t- Cert:', argv.httpscert));
-        console.log(chalk.yellow('  \t- Key :', argv.httpskey));
+        console.log(chalk.yellow('  Using HTTPS with:'))
+        console.log(chalk.yellow('  \t- Cert:', argv.httpscert))
+        console.log(chalk.yellow('  \t- Key :', argv.httpskey))
         if (!argv.httpscert || !argv.httpskey) {
-          console.log(chalk.yellow('*** Invalid HTTPS conf.'));
-          return process.exit(2);
+          console.log(chalk.yellow('*** Invalid HTTPS conf.'))
+          return process.exit(2)
         }
-        isHTTPS = true;
-        const https = require('https');
+        isHTTPS = true
+        const https = require('https')
         var options = {
           key: fs.readFileSync(path.join(process.cwd(), argv.httpskey)),
           cert: fs.readFileSync(path.join(process.cwd(), argv.httpscert))
-        };
-        server = https.createServer(options, app).listen(8443);
-
+        }
+        server = https.createServer(options, app).listen(8443)
       } else {
         server = app.listen(argv.port, argv.host)
       }
