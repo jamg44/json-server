@@ -71,6 +71,14 @@ module.exports = function () {
         alias: 'c',
         description: 'Path to config file',
         default: 'json-server.json'
+      },
+      httpscert: {
+        alias: 'C',
+        description: 'Path to HTTPS cert file (e.g. certificates/host.cert)'
+      },
+      httpskey: {
+        alias: 'K',
+        description: 'Path to HTTPS key file (e.g. certificates/host.key)'
       }
     })
     .boolean('watch')
@@ -83,7 +91,8 @@ module.exports = function () {
     .example('$0 db.json', '')
     .example('$0 file.js', '')
     .example('$0 http://example.com/db.json', '')
-    .epilog('https://github.com/typicode/json-server')
+    .example('$0 --httpscert', 'certificates/host.cert')
+    .epilog('https://github.com/jamg44/json-server')
     .require(1, 'Missing <source> argument')
     .argv
 

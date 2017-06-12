@@ -303,7 +303,28 @@ __Tip__ use modules like [Faker](https://github.com/Marak/faker.js), [Casual](ht
 
 ### HTTPS
 
-There's many way to set up SSL in development. One simple way though is to use [hotel](https://github.com/typicode/hotel).
+You can generate self-signed certificates using openssl, e.g.:
+```bash
+# http://blog.celogeek.com/201209/209/how-to-create-a-self-signed-wildcard-certificate/
+
+mkdir certificates
+cd certificates
+openssl genrsa 2048 > host.key
+openssl req -new -x509 -nodes -sha1 -days 3650 -key host.key > host.cert
+#[enter *.domain.com for the Common Name]
+openssl x509 -noout -fingerprint -text < host.cert > host.info
+cat host.cert host.key > host.pem
+chmod 400 host.key host.pem
+```
+
+And startup the server with:
+
+```bash
+$ json-server db.json --C certificates/host.cert -K certificates/host.key
+```
+
+
+Other simple way though is to use [hotel](https://github.com/typicode/hotel).
 
 ### Add custom routes
 
@@ -368,6 +389,8 @@ Options:
   --snapshots, -S    Set snapshots directory                      [default: "."]
   --delay, -d        Add delay to responses (ms)
   --id, -i           Set database id property (e.g. _id)         [default: "id"]
+  --httpscert, -C    Path to HTTPS cert file (e.g. certificates/host.cert)
+  --httpskey, -K     Path to HTTPS key file (e.g. certificates/host.key)
   --quiet, -q        Suppress log messages from output                 [boolean]
   --help, -h         Show help                                         [boolean]
   --version, -v      Show version number                               [boolean]
@@ -376,8 +399,9 @@ Examples:
   json-server db.json
   json-server file.js
   json-server http://example.com/db.json
+  json-server db.json --httpscert certificates/host.cert --httpskey certificates/host.key
 
-https://github.com/typicode/json-server
+https://github.com/jamg44/json-server
 ```
 
 You can also set options in a `json-server.json` configuration file.

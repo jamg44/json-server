@@ -58,7 +58,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/typicode/json-server.git"
+    "url": "git://github.com/jamg44/json-server.git"
   },
   "keywords": [
     "JSON",
@@ -79,9 +79,9 @@
   "author": "Typicode <typicode@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/typicode/json-server/issues"
+    "url": "https://github.com/jamg44/json-server/issues"
   },
-  "homepage": "https://github.com/typicode/json-server",
+  "homepage": "https://github.com/jamg44/json-server",
   "standard": {
     "fix": true,
     "env": {
