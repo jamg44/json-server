@@ -1,4 +1,4 @@
-# JSON Server [![](https://travis-ci.org/typicode/json-server.svg?branch=master)](https://travis-ci.org/typicode/json-server) [![](https://badge.fury.io/js/json-server.svg)](http://badge.fury.io/js/json-server) [![](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/typicode/json-server?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# JSON Server2 [![](https://travis-ci.org/typicode/json-server.svg?branch=master)](https://travis-ci.org/typicode/json-server) [![](https://badge.fury.io/js/json-server.svg)](http://badge.fury.io/js/json-server) [![](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/typicode/json-server?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Fork from https://github.com/typicode/json-server
   - Added [HTTPS](#https)
@@ -82,7 +82,7 @@ Create a `db.json` file
 Start JSON Server
 
 ```bash
-$ json-server --watch db.json
+$ json-server2 --watch db.json
 ```
 
 Now if you go to [http://localhost:3000/posts/1](), you'll get
@@ -101,7 +101,7 @@ Also when doing requests, it's good to know that:
 ## Install
 
 ```bash
-$ npm install -g json-server
+$ npm install -g json-server2
 ```
 
 ## Routes
@@ -254,11 +254,11 @@ or use `--static` to set a different static files directory.
 ```bash
 mkdir public
 echo 'hello world' > public/index.html
-json-server db.json
+json-server2 db.json
 ```
 
 ```bash
-json-server db.json --static ./some-other-dir
+json-server2 db.json --static ./some-other-dir
 ```
 
 ### Alternative port
@@ -266,7 +266,7 @@ json-server db.json --static ./some-other-dir
 You can start JSON Server on other ports with the `--port` flag:
 
 ```bash
-$ json-server --watch db.json --port 3004
+$ json-server2 --watch db.json --port 3004
 ```
 
 ### Access from anywhere
@@ -278,8 +278,8 @@ You can access your fake API from anywhere using CORS and JSONP.
 You can load remote schemas.
 
 ```bash
-$ json-server http://example.com/file.json
-$ json-server http://jsonplaceholder.typicode.com/db
+$ json-server2 http://example.com/file.json
+$ json-server2 http://jsonplaceholder.typicode.com/db
 ```
 
 ### Generate random data
@@ -299,7 +299,7 @@ module.exports = () => {
 ```
 
 ```bash
-$ json-server index.js
+$ json-server2 index.js
 ```
 
 __Tip__ use modules like [Faker](https://github.com/Marak/faker.js), [Casual](https://github.com/boo1ean/casual), [Chance](https://github.com/victorquinn/chancejs) or [JSON Schema Faker](https://github.com/json-schema-faker/json-schema-faker).
@@ -323,7 +323,7 @@ chmod 400 host.key host.pem
 And startup the server with:
 
 ```bash
-$ json-server db.json --C certificates/host.cert -K certificates/host.key
+$ json-server2 db.json --C certificates/host.cert -K certificates/host.key
 ```
 
 
@@ -344,7 +344,7 @@ Create a `routes.json` file. Pay attention to start every route with `/`.
 Start JSON Server with `--routes` option.
 
 ```bash
-json-server db.json --routes routes.json
+json-server2 db.json --routes routes.json
 ```
 
 Now you can access resources using additional routes.
@@ -369,14 +369,14 @@ module.exports = (req, res, next) => {
 ```
 
 ```bash
-json-server db.json --middlewares ./hello.js
-json-server db.json --middlewares ./first.js ./second.js
+json-server2 db.json --middlewares ./hello.js
+json-server2 db.json --middlewares ./first.js ./second.js
 ```
 
 ### CLI usage
 
 ```
-json-server [options] <source>
+json-server2 [options] <source>
 
 Options:
   --config, -c       Path to config file           [default: "json-server.json"]
@@ -399,10 +399,10 @@ Options:
   --version, -v      Show version number                               [boolean]
 
 Examples:
-  json-server db.json
-  json-server file.js
-  json-server http://example.com/db.json
-  json-server db.json --httpscert certificates/host.cert --httpskey certificates/host.key
+  json-server2 db.json
+  json-server2 file.js
+  json-server2 http://example.com/db.json
+  json-server2 db.json --httpscert certificates/host.cert --httpskey certificates/host.key
 
 https://github.com/jamg44/json-server
 ```
@@ -422,12 +422,12 @@ If you need to add authentication, validation, or __any behavior__, you can use 
 #### Simple example
 
 ```sh
-$ npm install json-server --save-dev
+$ npm install json-server2 --save-dev
 ```
 
 ```js
 // server.js
-const jsonServer = require('json-server')
+const jsonServer = require('json-server2')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
@@ -459,7 +459,7 @@ Please note also that `jsonServer.router()` can be used in existing Express proj
 Let's say you want a route that echoes query parameters and another one that set a timestamp on every resource created.
 
 ```js
-const jsonServer = require('json-server')
+const jsonServer = require('json-server2')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
@@ -493,7 +493,7 @@ server.listen(3000, () => {
 #### Access control example
 
 ```js
-const jsonServer = require('json-server')
+const jsonServer = require('json-server2')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
